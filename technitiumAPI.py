@@ -16,12 +16,12 @@ class TechnitiumAPI:
 
     def get_zones(self) -> list:
         endPoint = f'/api/zones/list'
-        response = self._session.post(self.__get_url(endPoint))
+        response = self._session.get(self.__get_url(endPoint))
         return self.__validate_response(response, 'response', 'zones')
 
     def get_records(self, zone: str):
         endPoint = f'/api/zones/records/get'
-        response = self._session.post(self.__get_url(endPoint, domain=zone, listZone='true'))
+        response = self._session.get(self.__get_url(endPoint, domain=zone, listZone='true'))
         return self.__validate_response(response, 'response', 'records')
 
     def add_record(self, zone: str, subdomain: str, ip: str):
@@ -88,7 +88,7 @@ class TechnitiumAPI:
         url = f'{self.__get_host()}/api/user/login?user={self.__username}&pass={self.__password}&includeInfo=false'
         self.__password = None
 
-        response = self._session.post(url)
+        response = self._session.get(url)
         return self.__validate_response(response, 'token')
     
     def __enter__(self):

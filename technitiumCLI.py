@@ -17,7 +17,7 @@ def main(cliArgs: list=sys.argv[1:]):
 
     # Record parser
     record_parser = items.add_parser("record")
-    operations = record_parser.add_subparsers(help="The operation to perform", dest="operation")
+    operations = record_parser.add_subparsers(help="The operation to perform.", dest="operation")
     # Add Record parser
     record_add_parser = operations.add_parser("add")
     record_add_parser.add_argument("zone", help="The zone to add to.")
