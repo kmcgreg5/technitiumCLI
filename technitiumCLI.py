@@ -31,7 +31,7 @@ def main(cliArgs: list=sys.argv[1:]):
             __validate_options(args)
             __add_record(args)
         else:
-            parser.print_help()
+            record_parser.print_help()
             sys.exit(1)
     else:
         parser.print_help()
