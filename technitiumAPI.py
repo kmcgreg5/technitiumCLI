@@ -1,5 +1,6 @@
 from requests import Session, Response
 import ipaddress
+import typing
 
 class APIException(Exception):
     pass
@@ -19,7 +20,7 @@ class TechnitiumAPI:
         response = self._session.get(self.__get_url(endPoint))
         return self.__validate_response(response, 'response', 'zones')
 
-    def get_records(self, zone: str):
+    def get_records(self, zone: str) -> list:
         endPoint = f'/api/zones/records/get'
         response = self._session.get(self.__get_url(endPoint, domain=zone, listZone='true'))
         return self.__validate_response(response, 'response', 'records')
@@ -31,7 +32,7 @@ class TechnitiumAPI:
         response = self._session.post(self.__get_url(endPoint, domain=f'{subdomain}.{zone}', zone=zone, type='A', ipAddress=ip))
         self.__validate_response(response)
 
-    def __validate_response(self, response, *args):
+    def __validate_response(self, response, *args) -> typing.Any:
         if response.status_code != 200:
             raise APIException(response.text)
         
@@ -49,7 +50,7 @@ class TechnitiumAPI:
         return return_value
 
 
-    def __get_host(self):
+    def __get_host(self) -> str:
         return f'http://{self._host}:{self._port}'
 
     def __get_url(self, endPoint, **arguments) -> str:
