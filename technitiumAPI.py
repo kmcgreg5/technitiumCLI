@@ -6,7 +6,8 @@ class APIException(Exception):
     pass
 
 class TechnitiumAPI:
-    def __init__(self, host: str=None, port: int=5380, username: str=None, password: str=None):
+    DEFAULT_PORT: int = 5380
+    def __init__(self, host: str=None, port: int=DEFAULT_PORT, username: str=None, password: str=None):
         self._host = host
         self._port = port
         self._session = None

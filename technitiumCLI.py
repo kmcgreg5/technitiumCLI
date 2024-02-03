@@ -11,7 +11,7 @@ def main(cliArgs: list=sys.argv[1:]):
     parser.add_argument("--host", help="The Technitium DNS Server host.", nargs='?')
     parser.add_argument("--username", help="The Technitium DNS Server username.", nargs='?')
     parser.add_argument("--password", help="The Technitium DNS Server password.", nargs='?')
-    parser.add_argument("--port", help="The port to connect to.", nargs='?', type=int, default=5380)
+    parser.add_argument("--port", help="The port to connect to.", nargs='?', type=int, default=TechnitiumAPI.DEFAULT_PORT)
 
     items = parser.add_subparsers(help="The supported items to operate on.", dest="item")
 
