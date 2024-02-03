@@ -5,8 +5,9 @@ class APIException(Exception):
     pass
 
 class TechnitiumAPI:
-    def __init__(self, host: str=None, username: str=None, password: str=None):
+    def __init__(self, host: str=None, port: int=5380, username: str=None, password: str=None):
         self._host = host
+        self._port = port
         self._session = None
         self.__token = None
         self.__username = username
@@ -49,7 +50,7 @@ class TechnitiumAPI:
 
 
     def __get_host(self):
-        return f'http://{self._host}:5380'
+        return f'http://{self._host}:{self._port}'
 
     def __get_url(self, endPoint, **arguments) -> str:
         url = f'{self.__get_host()}{endPoint}?token={self.__token}'
@@ -63,6 +64,10 @@ class TechnitiumAPI:
         self._host = host
         self.__username = username
         self.__password = password
+
+    def set_target_info(self, host: str, port: int, username: str, password: str):
+        self.set_target_info(host, username, password)
+        self._port = port
 
     def start_session(self):
         if self._session is None:

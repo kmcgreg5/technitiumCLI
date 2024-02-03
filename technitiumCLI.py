@@ -11,7 +11,7 @@ def main(cliArgs: list=sys.argv[1:]):
     parser.add_argument("--host", help="The Technitium DNS Server host.")
     parser.add_argument("--username", help="The Technitium DNS Server host.", nargs='?')
     parser.add_argument("--password", help="The Technitium DNS Server host.", nargs='?')
-    parser.add_argument("--port", help="The port to connect to.", nargs='?', type=int)
+    parser.add_argument("--port", help="The port to connect to.", nargs='?', type=int, default=5380)
 
     items = parser.add_subparsers(help="The supported items to operate on.", dest="item")
 
@@ -55,7 +55,7 @@ def __validate_options(args):
     throwRequiredOptionException("--port")
 
 def __add_record(args):
-    with TechnitiumAPI(args.host, args.username, args.password) as server:
+    with TechnitiumAPI(args.host, args.port, args.username, args.password) as server:
         zones = server.get_zones()
         zoneFound = False
         for zone in zones:
