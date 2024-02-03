@@ -8,7 +8,7 @@ class CLIException(Exception):
 def main(cliArgs: list=sys.argv[1:]):
     # Main parser
     parser = ArgumentParser(prog="Technitium DNS Server CLI")
-    parser.add_argument("--host", help="The Technitium DNS Server host.")
+    parser.add_argument("--host", help="The Technitium DNS Server host.", nargs='?')
     parser.add_argument("--username", help="The Technitium DNS Server host.", nargs='?')
     parser.add_argument("--password", help="The Technitium DNS Server host.", nargs='?')
     parser.add_argument("--port", help="The port to connect to.", nargs='?', type=int, default=5380)
